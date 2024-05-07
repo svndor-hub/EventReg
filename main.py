@@ -1,12 +1,13 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from contextlib import asynccontextmanager
 
-from database import User, delete_tables, create_tables
+from database import delete_tables, create_tables
 from events_router import events_router
 
 from schemas import UserCreate, UserRead, UserUpdate
-from users import auth_backend, current_active_user, fastapi_users
+from users import auth_backend, fastapi_users
 
 
 @asynccontextmanager
@@ -42,3 +43,15 @@ app.include_router(
     tags=["users"],
 )
 
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
