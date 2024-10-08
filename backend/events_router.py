@@ -15,7 +15,7 @@ events_router = APIRouter(
 current_user = fastapi_users.current_user()
 
 @events_router.post("")
-async def create_event(event_data: Annotated[SEventAdd, Depends()]) -> int:
+async def create_event(event_data: SEventAdd) -> int:
     event_id = await EventRepository.add_event(event_data)
     return event_id
 
