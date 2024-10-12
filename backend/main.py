@@ -9,6 +9,8 @@ from events_router import events_router
 from schemas import UserCreate, UserRead, UserUpdate
 from users import auth_backend, fastapi_users
 
+import uvicorn
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -55,3 +57,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
