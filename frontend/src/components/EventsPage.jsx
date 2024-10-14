@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import axios from 'axios'
 
-const API_URL = 'http://127.0.0.1:8000'
+const API_URL = '/api'
 
 function EventsPage() {
   const [newEvent, setNewEvent] = useState({
